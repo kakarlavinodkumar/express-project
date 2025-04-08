@@ -10,6 +10,7 @@ var productsRouter = require('./routes/products');
 var productypeRouter = require('./routes/productype');
 var gymRouter = require('./routes/gym');
 var trainerRouter = require('./routes/trainer');
+var equipmentRouter = require('./routes/equipment');
 
 var app = express();
 
@@ -29,6 +30,7 @@ app.use('/products', productsRouter);
 app.use('/productype', productypeRouter);
 app.use('/gym', gymRouter);
 app.use('/trainer', trainerRouter);
+app.use('/equipment', equipmentRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
