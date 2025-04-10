@@ -12,8 +12,27 @@ var gymRouter = require('./routes/gym');
 var trainerRouter = require('./routes/trainer');
 var equipmentRouter = require('./routes/equipment');
 var subscriptionRouter = require('./routes/subscription');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
 
 var app = express();
+
+// Swagger setup
+
+const swaggerOptions = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'MyApp API Documentation',
+      version: '1.0.0',
+      description: 'API documentation for MyApp',
+    },
+  },
+  apis: ['./routes/*.js'], // Path to the API docs
+};
+
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
