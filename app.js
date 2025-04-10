@@ -1,3 +1,24 @@
+/**
+ * @fileoverview Main application file for MyApp.
+ * Sets up the Express application, middleware, routes, and Swagger API documentation.
+ * 
+ * @requires http-errors
+ * @requires express
+ * @requires path
+ * @requires cookie-parser
+ * @requires morgan
+ * @requires swagger-ui-express
+ * @requires swagger-jsdoc
+ * 
+ * @requires ./routes/index
+ * @requires ./routes/users
+ * @requires ./routes/products
+ * @requires ./routes/productype
+ * @requires ./routes/gym
+ * @requires ./routes/trainer
+ * @requires ./routes/equipment
+ * @requires ./routes/subscription
+ */
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -37,6 +58,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+
 
 app.use(logger('dev'));
 app.use(express.json());
