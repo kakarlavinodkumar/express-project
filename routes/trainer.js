@@ -7,6 +7,132 @@ let trainers = [
   { id: 2, name: 'Jane Smith', specialty: 'Yoga' }
 ];
 
+/**
+ * @swagger
+ * tags:
+ *   name: Trainers
+ *   description: API for managing trainers
+ */
+
+/**
+ * @swagger
+ * /:
+ *   post:
+ *     summary: Add a new trainer
+ *     tags: [Trainers]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               specialty:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Trainer created successfully
+ *       400:
+ *         description: Invalid input
+ */
+
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Get all trainers
+ *     tags: [Trainers]
+ *     responses:
+ *       200:
+ *         description: List of trainers
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                   name:
+ *                     type: string
+ *                   specialty:
+ *                     type: string
+ */
+
+/**
+ * @swagger
+ * /{id}:
+ *   get:
+ *     summary: Get a trainer by ID
+ *     tags: [Trainers]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: Trainer ID
+ *     responses:
+ *       200:
+ *         description: Trainer details
+ *       404:
+ *         description: Trainer not found
+ */
+
+/**
+ * @swagger
+ * /{id}:
+ *   put:
+ *     summary: Update a trainer by ID
+ *     tags: [Trainers]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: Trainer ID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               specialty:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Trainer updated successfully
+ *       404:
+ *         description: Trainer not found
+ */
+
+/**
+ * @swagger
+ * /{id}:
+ *   delete:
+ *     summary: Remove a trainer by ID
+ *     tags: [Trainers]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: Trainer ID
+ *     responses:
+ *       200:
+ *         description: Trainer deleted successfully
+ *       404:
+ *         description: Trainer not found
+ */
+
 // CREATE: Add a new trainer
 router.post('/', function(req, res) {
   const newTrainer = {
