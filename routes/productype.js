@@ -6,7 +6,175 @@ let productTypes = [
   { id: 1, name: 'Electronics' },
   { id: 2, name: 'Furniture' }
 ];
+/**
+ * @swagger
+ * tags:
+ *   name: ProductTypes
+ *   description: API for managing product types
+ */
 
+/**
+ * @swagger
+ * /:
+ *   post:
+ *     summary: Create a new product type
+ *     tags: [ProductTypes]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: The name of the product type
+ *                 example: Clothing
+ *     responses:
+ *       201:
+ *         description: The product type was successfully created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: The ID of the product type
+ *                 name:
+ *                   type: string
+ *                   description: The name of the product type
+ *       400:
+ *         description: Invalid input
+ */
+
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Get all product types
+ *     tags: [ProductTypes]
+ *     responses:
+ *       200:
+ *         description: A list of product types
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   id:
+ *                     type: integer
+ *                     description: The ID of the product type
+ *                   name:
+ *                     type: string
+ *                     description: The name of the product type
+ */
+
+/**
+ * @swagger
+ * /{id}:
+ *   get:
+ *     summary: Get a product type by ID
+ *     tags: [ProductTypes]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the product type
+ *     responses:
+ *       200:
+ *         description: The product type details
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: The ID of the product type
+ *                 name:
+ *                   type: string
+ *                   description: The name of the product type
+ *       404:
+ *         description: Product type not found
+ */
+
+/**
+ * @swagger
+ * /{id}:
+ *   put:
+ *     summary: Update a product type by ID
+ *     tags: [ProductTypes]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the product type
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: The new name of the product type
+ *                 example: Updated Name
+ *     responses:
+ *       200:
+ *         description: The updated product type
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: The ID of the product type
+ *                 name:
+ *                   type: string
+ *                   description: The name of the product type
+ *       404:
+ *         description: Product type not found
+ */
+
+/**
+ * @swagger
+ * /{id}:
+ *   delete:
+ *     summary: Delete a product type by ID
+ *     tags: [ProductTypes]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the product type
+ *     responses:
+ *       200:
+ *         description: The deleted product type
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   description: The ID of the product type
+ *                 name:
+ *                   type: string
+ *                   description: The name of the product type
+ *       404:
+ *         description: Product type not found
+ */
 // CREATE: Add a new product type
 router.post('/', function(req, res) {
   const newProductType = {
