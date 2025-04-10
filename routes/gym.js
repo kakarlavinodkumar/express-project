@@ -6,7 +6,142 @@ let gyms = [
   { id: 1, name: 'Gold\'s Gym', location: 'Los Angeles' },
   { id: 2, name: 'Planet Fitness', location: 'New York' }
 ];
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Gym:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: The unique ID of the gym
+ *         name:
+ *           type: string
+ *           description: The name of the gym
+ *         location:
+ *           type: string
+ *           description: The location of the gym
+ *       required:
+ *         - name
+ *         - location
+ */
 
+/**
+ * @swagger
+ * /:
+ *   post:
+ *     summary: Add a new gym
+ *     tags: [Gyms]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Gym'
+ *     responses:
+ *       201:
+ *         description: Gym created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Gym'
+ */
+
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Get all gyms
+ *     tags: [Gyms]
+ *     responses:
+ *       200:
+ *         description: List of gyms
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Gym'
+ */
+
+/**
+ * @swagger
+ * /{id}:
+ *   get:
+ *     summary: Get a gym by ID
+ *     tags: [Gyms]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The ID of the gym
+ *     responses:
+ *       200:
+ *         description: Gym details
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Gym'
+ *       404:
+ *         description: Gym not found
+ */
+
+/**
+ * @swagger
+ * /{id}:
+ *   put:
+ *     summary: Update a gym by ID
+ *     tags: [Gyms]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The ID of the gym
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Gym'
+ *     responses:
+ *       200:
+ *         description: Gym updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Gym'
+ *       404:
+ *         description: Gym not found
+ */
+
+/**
+ * @swagger
+ * /{id}:
+ *   delete:
+ *     summary: Remove a gym by ID
+ *     tags: [Gyms]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: The ID of the gym
+ *     responses:
+ *       200:
+ *         description: Gym deleted successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Gym'
+ *       404:
+ *         description: Gym not found
+ */
 // CREATE: Add a new gym
 router.post('/', function(req, res) {
   const newGym = {
